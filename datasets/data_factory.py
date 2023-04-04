@@ -1,12 +1,17 @@
-from .data_loader import *
 from torch.utils.data import DataLoader
+
+from .data_loader import *
 
 data_dict = {
     'ETTh1': DatasetETTHour,
     'ETTh2': DatasetETTHour,
     'ETTm1': DatasetETTMinute,
     'ETTm2': DatasetETTMinute,
-    'custom': DatasetCustom,
+    'weather': DatasetCustom,
+    'electricity': DatasetCustom,
+    'exchange_rate': DatasetCustom,
+    'national_illness': DatasetCustom,
+    'traffic': DatasetCustom
 }
 
 
