@@ -295,6 +295,7 @@ class AttentionLayer(nn.Module):
         return self.out_projection(out), attn
 
 
+# EFDformer
 def get_frequency_modes(seq_len, modes=64, mode_select_method='random'):
     """
     get modes on frequency domain:
@@ -959,4 +960,3 @@ def get_phi_psi(k, base):
             psi2[ki] = partial(phi_, psi2_coeff[ki, :], lb=0.5 + 1e-16, ub=1)
 
     return phi, psi1, psi2
-

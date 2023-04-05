@@ -9,7 +9,7 @@ from torch import optim
 
 from datasets.data_factory import data_provider
 from exp.exp_basic import ExpBasic
-from models import informer, transformer, autoformer, fedformer, DLinear, NLinear, Linear
+from models import informer, transformer, autoformer, fedformer, dlinear, nlinear, linear
 from utils.metrics import metric
 from utils.tools import EarlyStopping, adjust_learning_rate
 
