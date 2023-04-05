@@ -16,7 +16,18 @@ def main():
     parser.add_argument('--is_training', type=int, default=1, help='status')
     parser.add_argument('--model_id', type=str, default='Weather_96_96', help='model id')
     parser.add_argument('--model', type=str, default='Autoformer',
-                        help='model name, options: [Autoformer, Informer, Transformer]')
+                        help='model name, options: [Autoformer, Informer, Transformer, FEDformer]')
+
+    # supplementary config for FEDformer model
+    parser.add_argument('--version', type=str, default='Fourier',
+                        help='for FEDformer, there are two versions to choose, options: [Fourier, Wavelets]')
+    parser.add_argument('--mode_select', type=str, default='random',
+                        help='for FEDformer, there are two mode selection method, options: [random, low]')
+    parser.add_argument('--modes', type=int, default=64, help='modes to be selected random 64')
+    parser.add_argument('--L', type=int, default=3, help='ignore level')
+    parser.add_argument('--base', type=str, default='legendre', help='mwt base')
+    parser.add_argument('--cross_activation', type=str, default='tanh',
+                        help='mwt cross atention activation function tanh or softmax')
 
     # data loader
     parser.add_argument('--data', type=str, default='weather', help='dataset type')

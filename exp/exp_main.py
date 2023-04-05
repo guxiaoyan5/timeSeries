@@ -9,7 +9,7 @@ from torch import optim
 
 from datasets.data_factory import data_provider
 from exp.exp_basic import ExpBasic
-from models import informer, transformer, autoformer
+from models import informer, transformer, autoformer, fedformer
 from utils.metrics import metric
 from utils.tools import EarlyStopping, adjust_learning_rate
 
@@ -25,7 +25,8 @@ class ExpMain(ExpBasic):
             # 'Autoformer': Autoformer,
             'Transformer': transformer,
             'Informer': informer,
-            'Autoformer': autoformer
+            'Autoformer': autoformer,
+            'FEDformer': fedformer,
         }
         model = model_dict[self.args.model].Model(self.args).float()
 
