@@ -27,9 +27,9 @@ class ExpMain(ExpBasic):
             'Informer': informer,
             'Autoformer': autoformer,
             'FEDformer': fedformer,
-            'DLinear': DLinear,
-            'NLinear': NLinear,
-            'Linear': Linear
+            'DLinear': dlinear,
+            'NLinear': nlinear,
+            'Linear': linear
         }
         model = model_dict[self.args.model].Model(self.args).float()
 
@@ -133,7 +133,7 @@ class ExpMain(ExpBasic):
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:
-                            outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
+                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                         else:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
@@ -144,7 +144,7 @@ class ExpMain(ExpBasic):
                         train_loss.append(loss.item())
                 else:
                     if self.args.output_attention:
-                        outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
+                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                     else:
                         outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
