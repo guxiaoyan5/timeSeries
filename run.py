@@ -15,8 +15,8 @@ def main():
     # basic config
     parser.add_argument('--is_training', type=int, default=1, help='status')
     parser.add_argument('--model_id', type=str, default='Weather_96_96', help='model id')
-    parser.add_argument('--model', type=str, default='Autoformer',
-                        help='model name, options: [Autoformer, Informer, Transformer, FEDformer]')
+    parser.add_argument('--model', type=str, default='DLinear',
+                        help='model name, options: [Autoformer, Informer, Transformer, FEDformer, NLinear,DLinear,Linear]')
 
     # supplementary config for FEDformer model
     parser.add_argument('--version', type=str, default='Fourier',
@@ -71,6 +71,8 @@ def main():
     parser.add_argument('--activation', type=str, default='gelu', help='activation')
     parser.add_argument('--output_attention', action='store_true', help='whether to output attention in encoder')
     parser.add_argument('--do_predict', action='store_true', help='whether to predict unseen future data')
+    parser.add_argument('--individual', action='store_true', default=False,
+                        help='DLinear: a linear layer for each variate(channel) individually')
 
     # optimization
     parser.add_argument('--num_workers', type=int, default=10, help='data loader num workers')

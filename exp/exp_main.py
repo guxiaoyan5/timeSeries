@@ -9,7 +9,7 @@ from torch import optim
 
 from datasets.data_factory import data_provider
 from exp.exp_basic import ExpBasic
-from models import informer, transformer, autoformer, fedformer
+from models import informer, transformer, autoformer, fedformer, DLinear, NLinear, Linear
 from utils.metrics import metric
 from utils.tools import EarlyStopping, adjust_learning_rate
 
@@ -27,6 +27,9 @@ class ExpMain(ExpBasic):
             'Informer': informer,
             'Autoformer': autoformer,
             'FEDformer': fedformer,
+            'DLinear': DLinear,
+            'NLinear': NLinear,
+            'Linear': Linear
         }
         model = model_dict[self.args.model].Model(self.args).float()
 
@@ -130,7 +133,7 @@ class ExpMain(ExpBasic):
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
                         if self.args.output_attention:
-                            outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
+                            outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                         else:
                             outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 
@@ -141,7 +144,7 @@ class ExpMain(ExpBasic):
                         train_loss.append(loss.item())
                 else:
                     if self.args.output_attention:
-                        outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
+                        outputs, _ = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                     else:
                         outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
 

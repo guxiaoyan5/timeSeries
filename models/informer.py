@@ -1,3 +1,6 @@
+"""
+Informer: Beyond Efficient Transformer for Long Sequence Time-Series Forecasting.
+"""
 import torch
 import torch.nn as nn
 

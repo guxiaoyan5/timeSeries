@@ -1,3 +1,6 @@
+"""
+Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting
+"""
 import torch
 import torch.nn as nn
 
